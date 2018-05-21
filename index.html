@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>SOUND</title>
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
+        crossorigin="anonymous">
+
+
+    <link rel="stylesheet" href="style.css">
+    <script src="./scripts/Tone.js"></script>
+    <script src="./scripts/jquery.min.js"></script>
+    <script src="./scripts/draggabilly.js"></script>
+    <script src="./scripts/StartAudioContext.js"></script>
+    <script src="./scripts/Interface.js"></script>
+    <script src="https://tonejs.github.io/Logo/build/Logo.js"></script>
+
+    <script src="scripts/Tone.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+
+    <script src="scripts/calcNote.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="examples.css">
+
+</head>
+
+<body>
+    <div class="py-4 mb-5 d-flex justify-content-center">
+        <ul class="nav p-3 box-shadow">
+
+            <li class="active">
+                <a id="togglemusic" data-toggle="tab" href="#music">
+                    <h3>Music</h3>
+                </a>
+            </li>
+            <li>
+                <a id="togglecustom" data-toggle="tab" href="#custom">
+                    <h3>Custom</h3>
+                </a>
+            </li>
+
+        </ul>
+    </div>
+
+    <div class="tab-content">
+        <div id="music" class="mt-5 pt-5 tab-pane fade in active show container">
+            <div class="music-container container">
+                <div class="container">
+                    <div class="login-container hidden" id="js-login-container">
+                        <button class="btn btn--login" id="js-btn-login">Login with Spotify</button>
+                    </div>
+                    <div class="main-container hidden" id="js-main-container"></div>
+                </div>
+            </div>
+        </div>
+        <div id="custom" class="tab-pane container fade">
+
+            <h2 class="mb-4">Custom Frequencies</h2>
+
+            <div id="Content" class="container box-shadow">
+                <div id="DragContainer"></div>
+            </div>
+            <div>
+                <a id="tone-add-btn" class="btn-floating btn-large waves-effect waves-light black float-right m-3 mt-5 box-shadow">
+                    <i class="material-icons">add</i>
+                </a>
+            </div>
+
+            <script id="ToneCode">
+                var numtones = -1;
+                var tones = new Array();
+                var draggers = new Array();
+
+                function addTone(freq) {
+                    numtones++
+                    tones[numtones] = new Tone.Oscillator({
+                        "frequency": freq,
+                        "volume": -10
+                    }).toMaster();
+                    draggers[numtones] = Interface.Dragger({
+                        tone: tones[numtones],
+                        name: tones[numtones].frequency.value,
+                        x: {
+                            param: "frequency",
+                            min: 20,
+                            max: 2000,
+                            exp: 3
+                        },
+                        y: {
+                            param: "volume",
+                            min: -40,
+                            max: 0
+                        },
+                        start: function (elem) {
+                            this.tone.start();
+                            Tone.Master.volume.rampTo(0, 0.05);
+                        },
+                        end: function () {
+                            //so it doesn't click
+                            this.tone.stop();
+                        }
+                    });
+
+                }
+
+                function deleteDragger(id) {
+                    tones[id].stop();
+                    tones[id].disconnect();
+                    tones[id] = null;
+
+                    draggers[id] = null;
+                }
+
+                $('#tone-add-btn').click(function () {
+                    addTone(200);
+                    Interface.Dragger.drag();
+                })
+            </script>
+
+        </div>
+
+        <script src="https://spotify-player.herokuapp.com/spotify-player.js"></script>
+        <script src="scripts/spotify.js"></script>
+
+</body>
+
+</html>

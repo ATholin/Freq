@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700,800');
+body {
+    font-family: Lato;
+    background-color: #f4f4f4;
+}
+
+.box-shadow {
+    box-shadow: 0px 12px 40px -12px #000;
+}
+
+.nav {
+    border-radius: 7px;
+}
+
+.nav li {
+    padding: 0px 70px 0px 70px;
+}
+
+.nav li a,
+.nav li a:hover {
+    color: #222;
+    text-decoration: none;
+}
+
+.tab-content {
+    height: 90%;
+    width: 100%;
+}
+
+#music {
+    font-weight: 800;
+}
+
+#custom {}
+
+.btn {}
+
+#closebtn {
+    position: absolute;
+    top: -10px;
+    float: right;
+    padding: 3px;
+    right: 0;
+    color: #000;
+}
+
+#custom h2,
+#custom h1 {
+    font-weight: 800;
+    display: inline-block;
+}
+
+.custom-div {
+    width: 100%;
+    border-radius: 7px;
+}
+
+.hidden {
+    display: none;
+}
+
+/** Buttons **/
+
+.btn--login {
+    margin: 0 auto;
+}
+
+/** Now Playing **/
+
+.now-playing__name {
+    font-size: 3em;
+    margin-bottom: 0.2em;
+    mix-blend-mode: difference;
+}
+
+.now-playing__artist {
+    font-size: 2em;
+    margin-bottom: 1em;
+}
+
+.now-playing__status {
+    margin-bottom: 1em;
+    font-size: 1em;
+}
+
+.now-playing__img {
+    float: left;
+    margin-right: 10px;
+    text-align: right;
+    width: 45%;
+}
+
+.now-playing__img img {
+    max-width: 80vmin;
+    width: 100%;
+}
+
+.now-playing__side {
+    margin-left: 5%;
+    width: 45%;
+}
+
+/** Progress **/
+
+.progress {
+    border: 0.15em solid #eee;
+    height: 1em;
+}
+
+.progress__bar {
+    background-color: #eee;
+    border: 0.1em solid transparent;
+    height: 0.75em;
+}
+
+/** Background **/
+
+.background {
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: -100;
+    background-size: cover;
+    background-position: center center;
+    filter: blur(4em);
+    position: absolute;
+}
+
+.main-wrapper {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    margin: 0 auto;
+    justify-content: center;
+    position: relative;
+    width: 80%;
+    z-index: 1;
+}
+
+.container {}
+
+.main-container {
+    flex: 1;
+    color: #fff;
+}
