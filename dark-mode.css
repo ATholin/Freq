@@ -1,0 +1,16 @@
+body.dark-mode {
+    background: #222;
+}
+
+.dark-mode h1,
+.dark-mode h2,
+.dark-mode h4,
+.dark-mode h5,
+.dark-mode h6,
+.dark-mode p {
+    color: #eee;
+}
+
+.dark-mode .btn-floating i {
+    color: #333;
+}

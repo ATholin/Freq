@@ -107,9 +107,9 @@ Interface.Dragger = function (params) {
 			"text": Math.round(this.tone.frequency.value)
 		}).appendTo(this.element);
 
-		this.x = $("<div>", {
+		this.x = $("<i>", {
 			"id": "closebtn",
-			"text": "x"
+			"data-feather": "x"
 		}).appendTo(this.element)
 
 		this.element.draggabilly({
@@ -161,9 +161,11 @@ Interface.Dragger.prototype._onstart = function (e) {};
 
 Interface.Dragger.prototype._onend = function (e) {
 	if ($('#closebtn:hover').length != 0) {
+		deleteDragger(this.element[0].id)
 		this.element[0].nextSibling.nextSibling.remove();
 		this.element[0].nextSibling.remove();
 		this.element[0].remove();
+
 
 	} else {
 		if (this.tone.state === "stopped") {

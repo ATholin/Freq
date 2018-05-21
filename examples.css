@@ -225,6 +225,7 @@ body {
 #Content {
   border-radius: 10px;
   padding: 0 !important;
+  background: #fff;
 }
 
 #Content #Title {

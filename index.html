@@ -15,6 +15,7 @@
 
 
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dark-mode.css">
     <script src="./scripts/Tone.js"></script>
     <script src="./scripts/jquery.min.js"></script>
     <script src="./scripts/draggabilly.js"></script>
@@ -38,7 +39,7 @@
 <body>
     <div class="py-4 mb-5 d-flex justify-content-center">
         <ul class="nav p-3 box-shadow">
-
+            <div></div>
             <li class="active">
                 <a id="togglemusic" data-toggle="tab" href="#music">
                     <h3>Music</h3>
@@ -51,6 +52,16 @@
             </li>
 
         </ul>
+        <div id="switch-div" class="p-2 px-4 box-shadow white">
+            <div class="switch">
+                <label class="text-black">
+                    Dark
+                    <input id="checkbox" type="checkbox" checked>
+                    <span class="lever"></span>
+                    Light
+                </label>
+            </div>
+        </div>
     </div>
 
     <div class="tab-content">
@@ -115,6 +126,7 @@
                 }
 
                 function deleteDragger(id) {
+                    console.log("deleting id" + id)
                     tones[id].stop();
                     tones[id].disconnect();
                     tones[id] = null;
@@ -124,7 +136,12 @@
 
                 $('#tone-add-btn').click(function () {
                     addTone(200);
-                    Interface.Dragger.drag();
+                })
+
+                $('#checkbox').click(function () {
+                    $('body').toggleClass('dark-mode')
+                    $('#tone-add-btn').toggleClass('black').toggleClass('white')
+                    //$('#switch-div').toggleClass('white')
                 })
             </script>
 

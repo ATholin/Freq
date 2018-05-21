@@ -5,6 +5,8 @@ var mainContainer = document.getElementById('js-main-container'),
 
 var spotifyPlayer = new SpotifyPlayer();
 
+spotifyPlayer.accesstoken = null;
+
 var template = function (data) {
     return `
     <div class="main-wrapper">
